@@ -1,0 +1,65 @@
+.dashboardContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem;
+    background-color: #1a1a1a;
+  }
+  
+  .logoutButton {
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .logoutButton:hover {
+    background-color: #005bb5;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 2rem;
+  }
+  
+  .schedule, .tasks {
+    margin-bottom: 2rem;
+  }
+  
+  .quickActions {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+  
+  .quickActionButton {
+    background-color: #333;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 5px;
+    padding: 1rem 2rem;
+    width: 30%; /* Tamaño igual para todos los botones */
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .quickActionButton:hover {
+    background-color: #555;
+  }
+  
