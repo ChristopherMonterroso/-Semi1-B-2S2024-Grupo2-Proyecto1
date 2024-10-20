@@ -45,10 +45,6 @@ const LoginPage = () => {
     }
   };
 
-  const handleBackToLogin = () => {
-    setIsFaceRecognition(false);
-  };
-
   if (loading) {
     return null;
   }
