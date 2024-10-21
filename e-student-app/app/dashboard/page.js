@@ -64,6 +64,14 @@ const DashboardPage = () => {
     router.push(`/task/${taskId}`);
   };
 
+  const handleDocumentConversionClick = () => {
+    router.push(isLocal ? '/documents' : '/documents.html'); // Redirige a la página de conversión de documentos
+  };
+
+  const handleScheduleClick = () => {
+    router.push(isLocal ? '/ver-horarios' : '/ver-horarios.html'); // Redirige a la página de conversión de documentos
+  };
+
   if (loading) {
     return <p>Cargando...</p>; // Muestra un mensaje mientras carga
   }
@@ -127,9 +135,11 @@ const DashboardPage = () => {
         </div>
 
         <div className={styles.quickActions}>
-          <button className={styles.quickActionButton}>Conversor de documentos</button>
+          <button className={styles.quickActionButton} onClick={handleDocumentConversionClick}>
+            Conversor de documentos
+          </button>
           <button className={styles.quickActionButton}>Reconocimiento de imágenes</button>
-          <button className={styles.quickActionButton}>Notificaciones y recordatorios</button>
+          <button className={styles.quickActionButton} onClick={handleScheduleClick}>Notificaciones y recordatorios</button>
         </div>
       </div>
     </div>
