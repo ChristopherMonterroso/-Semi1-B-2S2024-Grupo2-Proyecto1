@@ -238,10 +238,58 @@ const getAllTask = async (req, res) => {
     }
 };
 
+const getAllTaskById = async (req, res) => {
+    const { user_id } = req.params;
+    try {
+        if (!user_id ) {
+            return res.status(400).json({
+                message: "Todos los campos son obligatorios: user_id.",
+                status: false,
+            });
+        }
+
+        const response = await fetch(`${process.env.APIGATEWAY}/Test/getAllTaskById`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                body: JSON.stringify({
+                    user_id
+                })
+            }),
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data.message || 'Error get task');
+        }
+
+        // Deserializamos el cuerpo que viene en 'data.body'
+        const responseData = JSON.parse(data.body);
+        
+        // Devolvemos una respuesta exitosa con `status: true`
+        return res.status(response.status).json({
+            tasks: responseData.tasks,
+            status: responseData.status,
+        });
+    } catch (error) {
+        console.error('Error get task:', error);
+
+        // En caso de error, devolvemos `status: false`
+        return res.status(500).json({
+            message: 'Error interno al obtener la tarea',
+            error: error.message,
+            status: false,
+        });
+    }
+};
+
 module.exports = {
     createTask,
     updateTask,
     deleteTask,
     getTask,
-    getAllTask
+    getAllTask,
+    getAllTaskById
 };
