@@ -1,4 +1,4 @@
-'use client';
+'use client'
 import { useRouter } from 'next/navigation';
 import { useEffect, useState, useRef } from 'react';
 import styles from './Dashboard.module.css';
@@ -64,6 +64,15 @@ const DashboardPage = () => {
     router.push(`/task/${taskId}`);
   };
 
+  const handleScheduleClick = (scheduleId) => {
+    // Redirige a la página de detalles del horario
+    router.push(`/ver-horarios`);
+  };
+
+  const handleDocumentConversionClick = () => {
+    router.push(isLocal ? '/documents' : '/documents.html'); // Redirige a la página de conversión de documentos
+  };
+
   if (loading) {
     return <p>Cargando...</p>; // Muestra un mensaje mientras carga
   }
@@ -80,15 +89,37 @@ const DashboardPage = () => {
 
       <div className={styles.content}>
         <div className={styles.schedule}>
-          <h3>Horario del día</h3>
+          <h3>Horario</h3>
           {schedule.length > 0 ? (
-            <ul>
-              {schedule.map((item) => (
-                <li key={item.id}>
-                  {item.time} - {item.subject}
-                </li>
-              ))}
-            </ul>
+            <table className={styles.taskTable}>
+              <thead>
+                <tr>
+                  <th>Curso</th>
+                  <th>Profesor</th>
+                  <th>Ubicación</th>
+                  <th>Fecha y Hora</th>
+                </tr>
+              </thead>
+              <tbody>
+                {schedule.map((item) => (
+                  <tr
+                    key={item.schedule_id}
+                    className={styles.taskRow}
+                  >
+                    <td>{item.course_name}</td>
+                    <td>{item.professor}</td>
+                    <td>{item.location}</td>
+                    <td>{new Date(item.event_datetime).toLocaleString('es-ES', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit'
+                    })}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           ) : (
             <p>No hay clases programadas para hoy</p>
           )}
@@ -127,9 +158,11 @@ const DashboardPage = () => {
         </div>
 
         <div className={styles.quickActions}>
-          <button className={styles.quickActionButton}>Conversor de documentos</button>
+          <button className={styles.quickActionButton} onClick={handleDocumentConversionClick}>
+            Conversor de documentos
+          </button>
           <button className={styles.quickActionButton}>Reconocimiento de imágenes</button>
-          <button className={styles.quickActionButton}>Notificaciones y recordatorios</button>
+          <button className={styles.quickActionButton} onClick={handleScheduleClick}>Gestionar horarios</button>
         </div>
       </div>
     </div>
