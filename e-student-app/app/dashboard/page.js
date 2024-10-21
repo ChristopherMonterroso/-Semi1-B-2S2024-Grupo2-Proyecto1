@@ -68,6 +68,10 @@ const DashboardPage = () => {
     // Redirige a la página de detalles del horario
     router.push(`/ver-horarios`);
   };
+  const handleRecognitionClick = () => {
+    // Redirige a la página de detalles del horario
+    router.push(`/recognition-tool`);
+  };
 
   const handleDocumentConversionClick = () => {
     router.push(isLocal ? '/documents' : '/documents.html'); // Redirige a la página de conversión de documentos
@@ -161,7 +165,7 @@ const DashboardPage = () => {
           <button className={styles.quickActionButton} onClick={handleDocumentConversionClick}>
             Conversor de documentos
           </button>
-          <button className={styles.quickActionButton}>Reconocimiento de imágenes</button>
+          <button className={styles.quickActionButton} onClick={handleRecognitionClick}>Reconocimiento de imágenes</button>
           <button className={styles.quickActionButton} onClick={handleScheduleClick}>Gestionar horarios</button>
         </div>
       </div>

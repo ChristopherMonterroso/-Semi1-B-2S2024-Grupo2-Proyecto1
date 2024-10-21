@@ -35,7 +35,6 @@ export const createSchedule = async (scheduleData) => {
       },
       body: JSON.stringify({ ...scheduleData, user_id: userId }),
     });
-    console.log('response:', response);
     return handleResponse(response);
   } catch (error) {
     console.error('Error creating schedule:', error);
