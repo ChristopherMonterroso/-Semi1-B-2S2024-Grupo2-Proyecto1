@@ -22,6 +22,7 @@ router.put('/user/task/:task_id', taskController.updateTask);
 router.delete('/user/task/:task_id', taskController.deleteTask);
 router.get('/user/task/:task_id', taskController.getTask);
 router.get('/user/tasks', taskController.getAllTask);
+router.get('/user/tasks/:user_id', taskController.getAllTaskById);
 
 router.post('/user/shedule', sheduleController.createSchedule);
 router.put('/user/shedule/:schedule_id', sheduleController.updateSchedule);
