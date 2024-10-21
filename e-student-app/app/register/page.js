@@ -5,6 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/navigation';
 import styles from './Register.module.css';
+import { register } from '../services/register'; // Asegúrate de que la ruta sea correcta
 
 const RegisterPage = () => {
   const [name, setName] = useState('');
@@ -30,12 +31,8 @@ const RegisterPage = () => {
     }
 
     try {
-      // Simulación de registro exitoso
-      const data = {
-        status: true,
-        user: { name, email },
-        message: 'Registro exitoso',
-      };
+      // Llamada al servicio de registro
+      const data = await register(name, email, password);
 
       if (data.status) {
         // Guardar datos en localStorage y en una cookie
@@ -96,11 +93,9 @@ const RegisterPage = () => {
         <button type="submit" className={styles.button}>Registrarse</button>
 
         <p className={styles.centerText}>
-            ¿Ya tienes una cuenta? <a href={isLocal ? "/login" : "/login.html"}>Inicia sesión aquí</a>
+          ¿Ya tienes una cuenta? <a href={isLocal ? "/login" : "/login.html"}>Inicia sesión aquí</a>
         </p>
       </form>
-      
-      
     </div>
   );
 };

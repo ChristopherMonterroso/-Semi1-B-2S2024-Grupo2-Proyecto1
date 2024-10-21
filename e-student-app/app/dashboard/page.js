@@ -10,8 +10,8 @@ const DashboardPage = () => {
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
-    if (storedUser?.user?.name) {
-      setStudentName(storedUser.user.name);
+    if (storedUser?.user?.full_name) {
+      setStudentName(storedUser.user.full_name);
     } else {
       const redirectUrl = isLocal ? '/login' : '/login.html';
       //router.push(redirectUrl);

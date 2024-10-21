@@ -1,4 +1,6 @@
 
 Backend-node/.env
 
+Backend-node/src/.env
+
 Backend-node/node_modules/
