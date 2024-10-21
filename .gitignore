@@ -2,3 +2,7 @@
 Backend-node/.env
 
 Backend-node/node_modules/
+
+Backend-python/.env
+
+Backend-python/venv/
