@@ -117,6 +117,33 @@ const authUser = async (req, res) => {
       });
     }
 
+    const params = {
+      UserPoolId: process.env.COGNITO_USER_POOL_ID,
+      Username: email, 
+    };
+
+    try {
+      const userCognitoData = await cognito.adminGetUser(params).promise();
+
+      const emailVerified = userCognitoData.UserAttributes.find(
+        (attr) => attr.Name === 'email_verified'
+      );
+
+      if (!emailVerified || emailVerified.Value !== 'true') {
+        return res.status(403).json({
+          message: 'El correo electrónico no ha sido verificado.',
+          status: false,
+        });
+      }
+    } catch (cognitoError) {
+      console.error('Error verificando usuario en Cognito:', cognitoError);
+      return res.status(500).json({
+        message: 'Error al verificar el estado del usuario en Cognito.',
+        error: cognitoError.message,
+        status: false,
+      });
+    }
+
     const user = await User.findOne({ where: { email } });
 
     if (!user) {
