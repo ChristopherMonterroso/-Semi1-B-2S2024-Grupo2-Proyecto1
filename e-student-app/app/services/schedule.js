@@ -1,6 +1,6 @@
 import { API_BASE_URL, ENDPOINTS } from './config';
 
-export const GetAlbums = async (id) => {
+export const schedules = async (id) => {
     try {
         
         const response = await fetch(`${API_BASE_URL}${ENDPOINTS.SCHEDULES}/${id}`, {
