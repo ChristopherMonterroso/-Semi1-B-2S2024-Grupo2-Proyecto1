@@ -62,4 +62,29 @@
   .quickActionButton:hover {
     background-color: #555;
   }
+
+  .taskTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .taskTable th,
+  .taskTable td {
+    border: 1px solid #0070f3;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .taskTable th {
+    background-color: #0070f3;
+  }
+  
+  .taskRow {
+    cursor: pointer;
+  }
+  
+  .taskRow:hover {
+    background-color: #005bb5; /* Color de fondo al pasar el mouse */
+  }
   

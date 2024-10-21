@@ -3,12 +3,14 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState, useRef } from 'react';
 import styles from './Dashboard.module.css';
 import { schedules } from '../services/schedule'; // Asegúrate de que la ruta sea correcta
+import { task } from '../services/task'; // Importa el servicio de tareas
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const DashboardPage = () => {
   const [studentName, setStudentName] = useState('');
   const [schedule, setSchedule] = useState([]);
+  const [tasks, setTasks] = useState([]); // Estado para las tareas
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const isLocal = process.env.NEXT_PUBLIC_HOST === 'local';
@@ -24,6 +26,7 @@ const DashboardPage = () => {
       if (storedUser.id && !hasFetchedSchedule.current) {
         hasFetchedSchedule.current = true; // Evita futuras llamadas
         fetchSchedule(storedUser.id);
+        fetchTasks(); // Llama a la función para obtener tareas
       }
     } else {
       const redirectUrl = isLocal ? '/login' : '/login.html';
@@ -42,9 +45,23 @@ const DashboardPage = () => {
     }
   };
 
+  const fetchTasks = async () => {
+    try {
+      const data = await task(); // Llamada al servicio para obtener tareas
+      setTasks(data.tasks); // Almacena las tareas en el estado
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleLogout = () => {
     localStorage.removeItem('user'); // Elimina al usuario autenticado
     router.push(isLocal ? '/login' : '/login.html'); // Redirige al login según el entorno
+  };
+
+  const handleTaskClick = (taskId) => {
+    // Redirige a la página de detalles de la tarea
+    router.push(`/task/${taskId}`);
   };
 
   if (loading) {
@@ -79,7 +96,34 @@ const DashboardPage = () => {
 
         <div className={styles.tasks}>
           <h3>Tareas pendientes</h3>
-          {/* Aquí se mostrarían las tareas dinámicamente */}
+          {tasks.length > 0 ? (
+            <table className={styles.taskTable}>
+              <thead>
+                <tr>
+                  <th>Título</th>
+                  <th>Descripción</th>
+                  <th>Fecha de Vencimiento</th>
+                  <th>Prioridad</th>
+                  <th>Estado</th>
+                  <th>Creado el</th>
+                </tr>
+              </thead>
+              <tbody>
+                {tasks.map((task) => (
+                  <tr key={task.task_id} className={styles.taskRow} onClick={() => handleTaskClick(task.task_id)}>
+                    <td>{task.title}</td>
+                    <td>{task.description}</td>
+                    <td>{new Date(task.due_date).toLocaleDateString()}</td>
+                    <td>{task.priority}</td>
+                    <td>{task.status}</td>
+                    <td>{new Date(task.created_at).toLocaleDateString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <p>No hay tareas pendientes</p>
+          )}
         </div>
 
         <div className={styles.quickActions}>

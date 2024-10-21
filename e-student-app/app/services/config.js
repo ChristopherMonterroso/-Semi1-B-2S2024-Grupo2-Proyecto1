@@ -5,4 +5,5 @@ export const ENDPOINTS = {
   CONFIRM: '/auth/confirm',
   LOGIN: '/auth/login',
   SCHEDULES: '/user/shedules',
+  TASKS: '/user/tasks'
 };
