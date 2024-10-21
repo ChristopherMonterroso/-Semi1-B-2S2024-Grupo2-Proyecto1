@@ -1,0 +1,65 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background-color: #000;
+    color: #fff;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fileInput {
+    margin-bottom: 1rem;
+    color: #fff; /* Cambiar el color del texto del input */
+}
+
+.languageSelection {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.languageSelection select {
+    margin-right: 1rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #555;
+    background-color: #222;
+    color: #fff;
+}
+
+.speechOption {
+    margin-bottom: 1rem;
+}
+
+.convertButton {
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.convertButton:hover {
+    background-color: #005bb5;
+}
+
+.goBackButton {
+    background-color: #4caf50; /* Verde */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px; /* Espacio entre botones */
+}
+
+.goBackButton:hover {
+    background-color: #45a049; /* Color de hover */
+}
