@@ -1,9 +1,9 @@
 import { API_BASE_URL, ENDPOINTS } from './config';
 
-export const schedules = async (id) => {
+export const task = async (id) => {
     try {
         
-        const response = await fetch(`${API_BASE_URL}${ENDPOINTS.SCHEDULES}/${id}`, {
+        const response = await fetch(`${API_BASE_URL}${ENDPOINTS.TASKS}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
