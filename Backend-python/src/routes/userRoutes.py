@@ -1,6 +1,5 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint
 import controllers.userController as userController
-# import controllers.facialReController as facialReController
 
 userController_bp = Blueprint('userController_bp', __name__, url_prefix = '/api')
 

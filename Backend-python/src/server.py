@@ -4,8 +4,8 @@ from dotenv import load_dotenv
 import os
 
 from routes.userRoutes import userController_bp
-# from routes.albumRoutes import albumController_bp
-# from routes.textRoutes import textController_bp
+from routes.taskRoutes import taskController_bp
+from routes.sheduleRoutes import sheduleController_bp
 
 server = Flask(__name__)
 CORS(server)
@@ -13,8 +13,8 @@ load_dotenv()
 PORT = int(os.getenv('PORT'))
 
 server.register_blueprint(userController_bp)
-# server.register_blueprint(albumController_bp)
-# server.register_blueprint(textController_bp)
+server.register_blueprint(taskController_bp)
+server.register_blueprint(sheduleController_bp)
 
 @server.route('/', methods=['GET'])
 def home():
