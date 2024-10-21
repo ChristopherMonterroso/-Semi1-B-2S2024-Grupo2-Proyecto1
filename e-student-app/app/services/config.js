@@ -5,5 +5,8 @@ export const ENDPOINTS = {
   CONFIRM: '/auth/confirm',
   LOGIN: '/auth/login',
   SCHEDULES: '/user/shedules',
-  TASKS: '/user/tasks'
+  TASKS: '/user/tasks',
+  UPLOAD_FILE: '/user/file',
+  TRANSLATE_FILE: '/user/trasnlate',
+  TEXT_TO_SPEECH: '/user/polly'
 };

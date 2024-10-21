@@ -63,3 +63,29 @@
 .goBackButton:hover {
     background-color: #45a049; /* Color de hover */
 }
+
+.translatedTextContainer {
+    margin-top: 20px;
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+}
+
+.translatedTextArea {
+    width: 100%; /* Ajusta según el diseño */
+    max-width: 800px; /* Define un ancho máximo para el textarea */
+    height: 200px; /* Establece una altura fija, ajustable según tus necesidades */
+    padding: 10px;
+    border: 1px solid #ccc; /* Borde sutil */
+    border-radius: 4px; /* Bordes redondeados */
+    font-size: 14px; /* Tamaño de fuente */
+    resize: vertical; /* Permite redimensionar solo verticalmente */
+    background-color: #222; /* Color de fondo */
+    color: #fff; /* Color del texto */
+}
+
+/* Opcional: Estilo para el enfoque en el textarea */
+.translatedTextArea:focus {
+    outline: none; /* Elimina el contorno por defecto */
+    border-color: #0070f3; /* Cambia el color del borde al hacer foco */
+}
+
+  
